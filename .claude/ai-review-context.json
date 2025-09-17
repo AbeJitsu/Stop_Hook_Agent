@@ -1,0 +1,52 @@
+{
+  "review_timestamp": "2025-09-17T04:18:17Z",
+  "current_todos": [
+  {
+    "id": "1",
+    "content": "Implement todo state tracking system with snapshots",
+    "status": "in_progress",
+    "priority": "high"
+  },
+  {
+    "id": "2", 
+    "content": "Create todo-git change mapping validation",
+    "status": "pending",
+    "priority": "high"
+  },
+  {
+    "id": "3",
+    "content": "Build comprehensive validation logic for todos", 
+    "status": "pending",
+    "priority": "high"
+  }
+],
+  "completed_todos": [],
+  "git_context": {
+    "status": "A  AGENTS.md
+A  CLAUDE.md
+?? .claude/
+?? LEARNING_GUIDE.md
+?? ai-todo-reviewer.sh
+?? feedback-system.sh
+?? index.html
+?? package.json
+?? script.js
+?? stop-hook-validator.sh
+?? style.css
+?? test-functionality.js
+?? test-structure.js
+?? todo-git-mapper.sh
+?? todo-tracker.sh
+?? todo-validator.sh",
+    "changed_files": "",
+    "diff_preview": ""
+  },
+  "mapping_analysis": {},
+  "review_criteria": {
+    "todo_completion_accuracy": "Do completed todos actually match the code changes?",
+    "change_completeness": "Are all necessary changes present for each todo?",
+    "code_quality": "Do the changes represent good quality implementation?",
+    "missing_work": "What work might be missing or incomplete?",
+    "false_completions": "Are any todos marked complete incorrectly?"
+  }
+}
