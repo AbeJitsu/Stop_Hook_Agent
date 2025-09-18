@@ -1,0 +1,26 @@
+{
+  "analysis_timestamp": "2025-09-18T01:58:18Z",
+  "git_changes": {
+    "status": " M .claude/ai-review-context.json
+ M .claude/ai-review-result.json
+ M .claude/ai-review-summary.json
+ M .claude/todos-current.json
+ M .claude/todos-snapshot.json
+ M .claude/todos-validation.json
+ M todo-tracker.sh
+?? .claude/todo-git-mapping.json
+?? .claude/validation-context.json",
+    "changed_files": []
+[
+  ".claude/ai-review-context.json",
+  ".claude/ai-review-result.json",
+  ".claude/ai-review-summary.json",
+  ".claude/todos-current.json",
+  ".claude/todos-snapshot.json",
+  ".claude/todos-validation.json",
+  "todo-tracker.sh"
+]
+  },
+  "todo_mappings": [
+  ]
+}

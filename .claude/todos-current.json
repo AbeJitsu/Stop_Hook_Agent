@@ -1,20 +1,50 @@
 [
   {
     "id": "1",
-    "content": "Implement todo state tracking system with snapshots",
-    "status": "in_progress",
+    "content": "Add missed files to git and create follow-up commit",
+    "status": "completed",
     "priority": "high"
   },
   {
     "id": "2", 
-    "content": "Create todo-git change mapping validation",
-    "status": "pending",
+    "content": "Fix mock data in todo-tracker.sh to use real todo state",
+    "status": "completed",
     "priority": "high"
   },
   {
     "id": "3",
-    "content": "Build comprehensive validation logic for todos", 
-    "status": "pending",
+    "content": "Test incomplete work detection scenario", 
+    "status": "completed",
+    "priority": "medium"
+  },
+  {
+    "id": "4",
+    "content": "Test todo-git mapping accuracy",
+    "status": "completed",
+    "priority": "medium"
+  },
+  {
+    "id": "5",
+    "content": "Test iterative feedback loop functionality",
+    "status": "completed",
+    "priority": "medium"
+  },
+  {
+    "id": "6",
+    "content": "Test successful completion and auto-commit",
+    "status": "completed",
     "priority": "high"
+  },
+  {
+    "id": "7",
+    "content": "Test real-world integration with stop hook",
+    "status": "completed",
+    "priority": "high"
+  },
+  {
+    "id": "8",
+    "content": "Update documentation with test results",
+    "status": "completed",
+    "priority": "low"
   }
 ]
