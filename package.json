@@ -1,59 +1,12 @@
 {
-  "name": "stop-hook-learning-project",
-  "version": "1.0.0",
-  "description": "A simple counter app to learn stop hook validation with Claude Code",
-  "main": "script.js",
+  "name": "stop-hook-agent",
+  "version": "2.0.0",
+  "description": "Simplified stop hook validator ensuring work completion",
   "scripts": {
-    "start": "npx http-server -p 3000 -o",
-    "build": "npm run validate:html && npm run validate:css && npm run validate:js",
-    "test": "npm run test:functionality && npm run test:structure",
-    "test:functionality": "node test-functionality.js",
-    "test:structure": "node test-structure.js",
-    "lint": "npm run lint:html && npm run lint:css && npm run lint:js",
-    "lint:html": "npx html-validate index.html",
-    "lint:css": "npx stylelint style.css",
-    "lint:js": "npx eslint script.js",
-    "validate:html": "npx html-validate index.html",
-    "validate:css": "npx css-validator style.css || echo 'CSS validation passed'",
-    "validate:js": "node -c script.js && echo 'JavaScript syntax is valid'",
-    "install-tools": "npm install -D html-validate stylelint eslint http-server"
+    "start": "cd counter-app && python3 -m http.server 8000",
+    "test": "node test-suite.js",
+    "validate": "./validator.sh"
   },
-  "keywords": [
-    "learning",
-    "claude-code",
-    "stop-hook",
-    "validation",
-    "counter",
-    "javascript"
-  ],
-  "author": "Learning Project",
-  "license": "MIT",
-  "devDependencies": {
-    "eslint": "^8.0.0",
-    "html-validate": "^8.0.0",
-    "http-server": "^14.0.0",
-    "stylelint": "^15.0.0",
-    "stylelint-config-standard": "^34.0.0"
-  },
-  "eslintConfig": {
-    "env": {
-      "browser": true,
-      "es2021": true
-    },
-    "extends": "eslint:recommended",
-    "parserOptions": {
-      "ecmaVersion": "latest"
-    },
-    "rules": {
-      "no-unused-vars": "warn",
-      "no-console": "off"
-    }
-  },
-  "stylelint": {
-    "extends": "stylelint-config-standard",
-    "rules": {
-      "declaration-empty-line-before": null,
-      "rule-empty-line-before": null
-    }
-  }
+  "keywords": ["stop-hooks", "validation"],
+  "license": "MIT"
 }

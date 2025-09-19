@@ -1,71 +1,9 @@
 {
   "hooks": {
-    "stop": "./stop-hook-validator.sh",
-    "pre_task": "./feedback-system.sh analyze",
-    "post_validation": "./feedback-system.sh guidance"
+    "stop": "./validator.sh --auto-commit"
   },
-  "projectName": "Enhanced Stop Hook Learning Project",
-  "description": "Advanced todo-aware validation system with AI review and iterative feedback",
-  "tools": {
-    "bash": {
-      "enabled": true
-    },
-    "edit": {
-      "enabled": true
-    },
-    "read": {
-      "enabled": true
-    },
-    "write": {
-      "enabled": true
-    },
-    "todoWrite": {
-      "enabled": true,
-      "trackChanges": true
-    }
-  },
-  "todoTracking": {
-    "enabled": true,
-    "snapshotOnValidation": true,
-    "validateCompletionAccuracy": true,
-    "requireGitMapping": true
-  },
-  "validation": {
-    "enhanced": true,
-    "successCriteria": [
-      "Todo state validation passes",
-      "Todo-git change mapping is accurate",
-      "AI-powered review indicates completion",
-      "All required files exist (HTML, CSS, JS, package.json)",
-      "HTML structure is valid with required elements",
-      "CSS styling is applied correctly", 
-      "JavaScript functionality works (counter increment/reset)",
-      "Functionality tests pass",
-      "Structure tests pass"
-    ],
-    "commands": {
-      "build": "npm run build",
-      "test": "npm run test", 
-      "lint": "npm run lint",
-      "validate_todos": "./todo-validator.sh",
-      "check_mapping": "./todo-git-mapper.sh map",
-      "ai_review": "./ai-todo-reviewer.sh review"
-    },
-    "autoCommit": {
-      "enabled": true,
-      "onlyWhenAllCriteriaMet": true,
-      "includeCoAuthor": true
-    }
-  },
-  "feedback": {
-    "iterativeEnabled": true,
-    "trackProgress": true,
-    "provideTrends": true,
-    "escalateAfterIterations": 5
-  },
-  "aiIntegration": {
-    "reviewEnabled": true,
-    "fallbackValidation": true,
-    "contextualFeedback": true
+  "systemPrompt": "You are working on a Stop Hook Agent project that ensures work is completed before stopping.\n\nKey files:\n- counter-app/ - Test application\n- validator.sh - Main validation script\n- test-suite.js - All tests\n\nAlways run './test-suite.js' to validate your work.",
+  "env": {
+    "PROJECT_TYPE": "stop-hook-validator"
   }
 }
