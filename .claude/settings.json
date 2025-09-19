@@ -1,9 +1,0 @@
-{
-  "hooks": {
-    "stop": "./validator.sh --auto-commit"
-  },
-  "systemPrompt": "You are working on a Stop Hook Agent project that ensures work is completed before stopping.\n\nKey files:\n- counter-app/ - Test application\n- validator.sh - Main validation script\n- test-suite.js - All tests\n\nAlways run './test-suite.js' to validate your work.",
-  "env": {
-    "PROJECT_TYPE": "stop-hook-validator"
-  }
-}

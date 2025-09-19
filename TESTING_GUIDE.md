@@ -1,58 +1,60 @@
 # Testing Guide
 
-## Test Scenarios
+## Test Scenarios Using Subagents
 
 ### 1. Break Something Test
-```bash
+```
 # Delete reset button from HTML
-# Tell Claude: "Fix the counter app"
-# Expected: Validator catches missing button
+# Ask Claude: "Use a subagent to find what's broken in the counter app"
+# Expected: Subagent detects missing button and failed tests
 ```
 
-### 2. Incomplete Fix Test  
-```bash
+### 2. Validate Fix Test  
+```
 # Break increment function (make it subtract)
-# Tell Claude: "Fix counter increment"
-# Interrupt before completion
-# Expected: Validator prevents false completion
+# Fix it
+# Ask: "Launch a subagent to verify the counter works correctly"
+# Expected: Subagent confirms all tests pass
 ```
 
-### 3. Todo Mismatch Test
-```bash
-# Give Claude 3 tasks
-# Let it complete only 2
-# Expected: Validator shows "todos incomplete"
+### 3. Comprehensive Validation
+```
+# Ask: "Have a subagent do a full validation of the counter app"
+# Expected: Detailed report on all aspects
 ```
 
-## Example Prompts
+## Effective Prompts for Subagent Validation
 
 ### Good Prompt (Specific)
 ```
-Add a decrement button with these criteria:
-1. Button shows "Decrement (-1)"
-2. Clicking reduces counter by 1
-3. All tests must pass
+"Use a subagent to verify:
+1. Counter increments by exactly 1
+2. Reset button returns to 0
+3. All tests pass
+4. No console errors"
 ```
 
-### Bad Prompt (Vague)
+### Better Prompt (Comprehensive)
 ```
-Make the counter better
+"Launch a subagent to validate the counter app is production-ready,
+checking tests, functionality, code quality, and error handling"
 ```
 
 ## What Success Looks Like
 
-✅ **Working**: Validator blocks with specific reasons  
-❌ **Not Working**: Claude says "done" when it's not
+✅ **Working**: Subagent provides detailed validation report
+✅ **Issues Found**: Clear explanation of what needs fixing
+✅ **All Clear**: Confirmation that everything works
 
-## Manual Testing
+## Direct Testing
 
+You can still run tests manually:
 ```bash
-# Run validator directly
-./validator.sh
+# Run test suite
+npm test
 
-# Check specific validation
-./validator.sh --verbose
-
-# Test without auto-commit
-./validator.sh --no-commit
+# Start the app
+npm start
 ```
+
+But the power is in using subagents for intelligent validation.

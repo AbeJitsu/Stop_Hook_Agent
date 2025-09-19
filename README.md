@@ -1,51 +1,52 @@
-# Stop Hook Agent
+# Subagent Validation Learning Project
 
-A validation system that ensures Claude Code completes work before declaring tasks done.
+Learn how to use Claude Code's Task tool to validate work completion through subagents.
 
-## What It Does
+## What This Is
 
-Prevents AI assistants from stopping work prematurely by running 6 validation checks:
-- File structure exists
-- Syntax is valid  
-- Tests pass
-- Todos match code changes
-- Git has meaningful changes
-- AI review confirms completion
-
-## Quick Start
-
-```bash
-# Test the validator
-./validator.sh
-
-# Run tests
-npm test
-
-# Start counter app
-npm start
-```
+A hands-on project to learn proper subagent usage for:
+- Running tests independently
+- Validating work completion
+- Reviewing code quality
+- Ensuring requirements are met
 
 ## Project Structure
 
 ```
-├── counter-app/       # Test application
-├── lib/              # Validation logic
-├── validator.sh      # Main stop hook
-├── test-suite.js     # All tests
-└── .claude/
-    └── settings.json # Hook configuration
+├── counter-app/       # Simple app to practice validation
+├── test-suite.js      # Tests that subagents can run
+├── SUBAGENT_GUIDE.md  # Learn how to use subagents
+└── validation_examples.md # Practice scenarios
 ```
 
-## How It Works
+## Quick Start
 
-See [HOW_IT_WORKS.md](HOW_IT_WORKS.md) for technical details.
+1. **Run tests manually**:
+   ```bash
+   npm test
+   ```
 
-## Testing
+2. **Use a subagent** (ask Claude):
+   ```
+   "Use a subagent to run tests and validate the counter app"
+   ```
 
-See [TESTING_GUIDE.md](TESTING_GUIDE.md) for test scenarios.
+3. **Practice validation**:
+   ```
+   "Launch a subagent to check if all requirements are met"
+   ```
 
-## Success
+## Learning Path
 
-✅ 7 core files (~500 lines) down from 24 files (2,700+ lines)  
-✅ Catches incomplete work that traditional validation misses  
-✅ Forces genuine task completion with auto-commit on success  
+1. Read [SUBAGENT_GUIDE.md](SUBAGENT_GUIDE.md) to understand subagents
+2. Try the practice exercises with the counter app
+3. Learn to write effective validation prompts
+4. Apply these patterns to your real projects
+
+## Why This Matters
+
+Instead of relying on hooks or external scripts, learn to use Claude's native Task tool for reliable validation. Subagents provide real, independent verification of your work.
+
+## Key Insight
+
+Subagents are Claude's proper way to validate work - not shell scripts or hooks. This project teaches you how to use them effectively.

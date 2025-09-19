@@ -1,49 +1,57 @@
-# How It Works
+# How Subagent Validation Works
 
-## Validation Flow
+## The Flow
 
 ```
-Claude completes task → validator.sh runs → 6 checks performed → Pass/Fail decision
+You make changes → Ask Claude to validate → Claude launches subagent → Independent validation → Results reported back
 ```
 
-## The 6 Validation Criteria
+## What Happens When You Request Validation
 
-### 1. File Structure
-Verifies required files exist:
-- counter-app/index.html
-- counter-app/style.css  
-- counter-app/script.js
+### 1. You Ask Claude
+"Use a subagent to validate my counter app works correctly"
 
-### 2. Syntax Validation
-- JavaScript: `node -c` syntax check
-- JSON: `jq` validation
+### 2. Claude Uses Task Tool
+```python
+Task(
+    description="Validate counter app",
+    prompt="Run test-suite.js and verify all functionality works",
+    subagent_type="general-purpose"
+)
+```
 
-### 3. Test Execution
-Runs `npm test` (test-suite.js)
+### 3. Subagent Runs Independently
+- Has fresh context (doesn't know your conversation)
+- Can run commands like `npm test`
+- Can read and analyze files
+- Can test the actual functionality
 
-### 4. Todo Validation
-- Reads todos from .claude/state.json
-- Checks completed todos have corresponding git changes
-- Prevents marking todos complete without code changes
+### 4. Results Come Back
+The subagent reports findings, which Claude shares with you.
 
-### 5. Git State
-- Checks for uncommitted changes
-- Validates changes are meaningful (not just whitespace)
+## Why This Is Better Than Hooks
 
-### 6. AI Review (Subagent)
-- Calls `lib/ai_reviewer.sh` to analyze todo/git alignment
-- Passes JSON with todos, completed items, and git changes
-- Subagent returns YES/NO based on deep analysis
-- Falls back to simple heuristic if subagent unavailable
+**Hooks (what we removed):**
+- Run as external bash scripts
+- Can't access Claude's capabilities
+- Limited to basic file checks
+- Can't make intelligent decisions
 
-## Auto-Commit
+**Subagents (the right way):**
+- Full Claude intelligence
+- Can understand context and requirements
+- Run actual tests and analyze results
+- Provide detailed, intelligent feedback
 
-When ALL 6 criteria pass:
-1. Stages all changes
-2. Creates commit with validation summary
-3. Exits with success code
+## Validation Capabilities
 
-When ANY criteria fail:
-1. Shows specific failure reasons
-2. Provides actionable next steps
-3. Exits with error code (blocks completion)
+Subagents can:
+1. **Run test suites** - Execute and interpret test results
+2. **Check functionality** - Verify features actually work
+3. **Review code quality** - Analyze patterns and practices
+4. **Compare changes** - Understand what was modified and why
+5. **Validate requirements** - Ensure all criteria are met
+
+## Key Principle
+
+Validation should be intelligent, not mechanical. Subagents provide the intelligence that bash scripts can't.
