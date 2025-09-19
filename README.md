@@ -1,57 +1,51 @@
-# Stop Hook Agent - Simplified
+# Stop Hook Agent
 
-A DRY, orthogonal validation system that ensures Claude Code completes work before stopping.
+A validation system that ensures Claude Code completes work before declaring tasks done.
 
-## Structure (7 files, ~500 lines)
+## What It Does
 
-```
-├── counter-app/          # Test application
-│   ├── index.html
-│   ├── style.css
-│   └── script.js
-├── lib/                  # Shared utilities
-│   ├── core.sh          # Common functions
-│   └── validators.sh    # Validation logic
-├── validator.sh         # Main entry point
-├── test-suite.js        # All tests
-├── package.json         # NPM scripts
-└── .claude/
-    ├── settings.json    # Hook configuration
-    └── state.json       # Single state file
-```
+Prevents AI assistants from stopping work prematurely by running 6 validation checks:
+- File structure exists
+- Syntax is valid  
+- Tests pass
+- Todos match code changes
+- Git has meaningful changes
+- AI review confirms completion
 
-## How It Works
-
-1. **Stop Hook** - `validator.sh` runs after each Claude Code task
-2. **Validation** - 6 criteria checked (files, syntax, tests, todos, git, AI)
-3. **Auto-commit** - Only when ALL criteria pass
-
-## Usage
+## Quick Start
 
 ```bash
+# Test the validator
+./validator.sh
+
 # Run tests
 npm test
-
-# Manual validation
-./validator.sh
 
 # Start counter app
 npm start
 ```
 
-## Testing the System
+## Project Structure
 
-Ask Claude to break something, then request a fix:
 ```
-"Remove the reset button from the counter app"
-"Now add it back and ensure all tests pass"
+├── counter-app/       # Test application
+├── lib/              # Validation logic
+├── validator.sh      # Main stop hook
+├── test-suite.js     # All tests
+└── .claude/
+    └── settings.json # Hook configuration
 ```
 
-The stop hook will ensure work isn't marked complete until validation passes.
+## How It Works
 
-## Key Design Principles
+See [HOW_IT_WORKS.md](HOW_IT_WORKS.md) for technical details.
 
-- **DRY** - No duplicate code across files
-- **Orthogonal** - Each component has one clear purpose
-- **Functional** - Every test validates actual functionality
-- **Simple** - 500 lines vs 2,700+ in original
+## Testing
+
+See [TESTING_GUIDE.md](TESTING_GUIDE.md) for test scenarios.
+
+## Success
+
+✅ 7 core files (~500 lines) down from 24 files (2,700+ lines)  
+✅ Catches incomplete work that traditional validation misses  
+✅ Forces genuine task completion with auto-commit on success  

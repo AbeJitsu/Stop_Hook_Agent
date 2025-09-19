@@ -3,7 +3,7 @@
 # Validation functions for stop hook
 # All validation logic in one place
 
-source "$(dirname "$0")/core.sh"
+source "$(dirname "${BASH_SOURCE[0]}")/core.sh"
 
 # Structure validation
 validate_files_exist() {
@@ -115,43 +115,29 @@ validate_git_state() {
     return 0
 }
 
-# AI review (simplified)
+# AI review (using subagent)
 ai_review() {
     print_info "Running AI review validation..."
     
-    # Prepare context
-    local context=$(cat <<EOF
+    # Prepare context for AI reviewer
+    local review_data=$(cat <<EOF
 {
     "todos": $(get_todos),
     "completed": $(get_completed_todos),
-    "git_changes": $(git_status | head -10 | jq -Rs '.')
+    "git_changes": $(git_status | head -20 | jq -Rs '.'),
+    "git_diff_stats": $(git diff --stat 2>/dev/null | jq -Rs '.')
 }
 EOF
 )
     
-    # Try AI review if available
-    if command -v claude >/dev/null 2>&1; then
-        local review_prompt="Review if the completed todos match the git changes. Return only YES or NO."
-        local result=$(echo "$context" | claude --prompt "$review_prompt" 2>/dev/null || echo "FALLBACK")
-        
-        if [ "$result" = "YES" ]; then
-            print_success "AI review: Changes match todos"
-            return 0
-        elif [ "$result" = "NO" ]; then
-            print_error "AI review: Changes don't match todos"
-            return 1
-        fi
-    fi
+    # Call AI reviewer subagent
+    local result=$("$SCRIPT_DIR/lib/ai_reviewer.sh" "$review_data")
     
-    # Fallback: basic heuristic
-    local completed_count=$(echo "$context" | jq '.completed | length')
-    local change_count=$(git_status | wc -l)
-    
-    if [ "$completed_count" -gt 0 ] && [ "$change_count" -gt 0 ]; then
-        print_success "Fallback review: Activity detected"
+    if [ "$result" = "YES" ]; then
+        print_success "AI review: Changes match todos"
         return 0
     else
-        print_error "Fallback review: No meaningful activity"
+        print_error "AI review: Changes don't match todos"
         return 1
     fi
 }
