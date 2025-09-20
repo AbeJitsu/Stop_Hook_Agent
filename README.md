@@ -1,52 +1,51 @@
-# Subagent Validation Learning Project
+# Validation Enforcement Project
 
-Learn how to use Claude Code's Task tool to validate work completion through subagents.
+Learn how to enforce validation in Claude Code projects through practical approaches that actually work.
 
-## What This Is
+## The Problem
 
-A hands-on project to learn proper subagent usage for:
-- Running tests independently
-- Validating work completion
-- Reviewing code quality
-- Ensuring requirements are met
+Claude Code can declare work "complete" without validation. This project explores solutions that actually enforce validation.
 
-## Project Structure
+## What's Included
 
+**Working Solutions**:
+- Git hooks that block commits if tests fail
+- GitHub Actions for CI/CD enforcement  
+- Setup scripts for easy configuration
+
+**Educational Resources**:
+- Why traditional approaches fail
+- How to use subagents effectively
+- Practical enforcement strategies
+
+## Quick Setup
+
+```bash
+# Enforce validation locally
+./setup-validation.sh
+
+# Now validation runs automatically before commits
 ```
-├── counter-app/       # Simple app to practice validation
-├── test-suite.js      # Tests that subagents can run
-├── SUBAGENT_GUIDE.md  # Learn how to use subagents
-└── validation_examples.md # Practice scenarios
-```
 
-## Quick Start
+## How It Works
 
-1. **Run tests manually**:
-   ```bash
-   npm test
-   ```
+1. **Git Enforcement**: Can't commit if tests fail
+2. **CI/CD**: Can't merge PRs without validation
+3. **Prompt Patterns**: Include validation in requests
+4. **Subagents**: For independent verification
 
-2. **Use a subagent** (ask Claude):
-   ```
-   "Use a subagent to run tests and validate the counter app"
-   ```
+## Key Documents
 
-3. **Practice validation**:
-   ```
-   "Launch a subagent to check if all requirements are met"
-   ```
+- [WHY_THIS_FAILS.md](WHY_THIS_FAILS.md) - Why validation is hard to enforce
+- [SOLUTION.md](SOLUTION.md) - Practical approaches that work
+- [ENFORCEMENT_APPROACHES.md](ENFORCEMENT_APPROACHES.md) - Alternative strategies explored
+- [SUBAGENT_GUIDE.md](SUBAGENT_GUIDE.md) - How to use subagents properly
 
-## Learning Path
+## The Reality
 
-1. Read [SUBAGENT_GUIDE.md](SUBAGENT_GUIDE.md) to understand subagents
-2. Try the practice exercises with the counter app
-3. Learn to write effective validation prompts
-4. Apply these patterns to your real projects
+We can't force Claude to validate internally, but we can:
+- Enforce at the Git level ✅
+- Train better habits ✅  
+- Use external tools ✅
 
-## Why This Matters
-
-Instead of relying on hooks or external scripts, learn to use Claude's native Task tool for reliable validation. Subagents provide real, independent verification of your work.
-
-## Key Insight
-
-Subagents are Claude's proper way to validate work - not shell scripts or hooks. This project teaches you how to use them effectively.
+This project shows you how.

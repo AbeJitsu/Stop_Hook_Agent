@@ -31,14 +31,6 @@ test('Counter app files exist', () => {
     return required.every(file => fs.existsSync(file));
 });
 
-test('Library files exist', () => {
-    const required = ['lib/core.sh', 'lib/validators.sh'];
-    return required.every(file => fs.existsSync(file));
-});
-
-test('Main validator exists', () => {
-    return fs.existsSync('validator.sh');
-});
 
 // Syntax Tests
 console.log('\n🔧 Syntax Tests:');
@@ -121,26 +113,6 @@ test('JS has event listeners', () => {
     return js.includes('addEventListener') || js.includes('onclick');
 });
 
-// Validation Script Tests
-console.log('\n🔍 Validation Tests:');
-test('Validator script is executable', () => {
-    try {
-        const stats = fs.statSync('validator.sh');
-        return (stats.mode & 0o111) !== 0; // Check if any execute bit is set
-    } catch (e) {
-        return false;
-    }
-});
-
-test('Library scripts are executable', () => {
-    try {
-        const core = fs.statSync('lib/core.sh');
-        const validators = fs.statSync('lib/validators.sh');
-        return ((core.mode & 0o111) !== 0) && ((validators.mode & 0o111) !== 0);
-    } catch (e) {
-        return false;
-    }
-});
 
 // Summary
 console.log('\n' + '='.repeat(50));

@@ -1,0 +1,40 @@
+name: Enforce Validation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: Install dependencies
+      run: npm install
+    
+    - name: Run tests
+      run: npm test
+    
+    - name: Check file structure
+      run: |
+        # Ensure required files exist
+        test -f counter-app/index.html
+        test -f counter-app/style.css
+        test -f counter-app/script.js
+        test -f test-suite.js
+    
+    - name: Validate HTML
+      run: |
+        # Check for required elements
+        grep -q 'id="counter-value"' counter-app/index.html
+        grep -q 'id="increment-btn"' counter-app/index.html
+        grep -q 'id="reset-btn"' counter-app/index.html
